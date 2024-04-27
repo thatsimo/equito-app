@@ -16,36 +16,37 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Check, ChevronsUpDown, Link } from "lucide-react";
+import { Check, ChevronsUpDown, Coins, Link } from "lucide-react";
 import Image from "next/image";
-import { Chain } from "@/lib/model";
+import { Coin } from "@/lib/model";
 
 type PopoverTriggerProps = React.ComponentPropsWithoutRef<
   typeof PopoverTrigger
 >;
 
-type ChainSelectProps = PopoverTriggerProps & {
-  items: Chain[];
-  item?: Chain;
+type CoinSelectProps = PopoverTriggerProps & {
+  items: Coin[];
+  selected?: Coin;
+  setSelect: React.Dispatch<React.SetStateAction<Coin | undefined>>;
   disabled?: boolean;
 };
 
-export default function ChainSelect({
+export default function CoinSelect({
   className,
   items,
-  item,
+  selected,
+  setSelect,
   disabled,
-}: ChainSelectProps) {
+}: CoinSelectProps) {
   const [open, setOpen] = React.useState(false);
-  const [selected, setSelected] = React.useState<Chain | undefined>(item);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <Button
           role="combobox"
-          variant="default"
-          className={cn("flex items-center gap-2", className)}
+          variant="outline"
+          className={cn("flex items-center gap-2 rounded-full", className)}
           disabled={disabled}
         >
           {selected ? (
@@ -56,12 +57,12 @@ export default function ChainSelect({
                 height={24}
                 alt="logo"
               />
-              {selected.name}
+              {selected.symbol}
             </>
           ) : (
             <>
-              <Link className={"h-4 w-4"} />
-              Select a chain
+              <Coins className={"h-4 w-4"} />
+              Select coin
             </>
           )}
           <ChevronsUpDown className="h-4 w-4 shrink-0 opacity-50" />
@@ -74,21 +75,24 @@ export default function ChainSelect({
             <CommandEmpty>No results found.</CommandEmpty>
             {items.map((item) => (
               <CommandItem
-                className="text-md hover:cursor-pointer gap-2"
+                className="text-sm hover:cursor-pointer gap-2"
                 onSelect={() => {
                   setOpen(false);
-                  setSelected(item);
+                  setSelect(item);
                 }}
                 key={item.id}
               >
                 <Image
                   src={`https://s2.coinmarketcap.com/static/img/coins/64x64/${item.id}.png`}
-                  width={24}
-                  height={24}
+                  width={36}
+                  height={36}
                   alt="logo"
                 />
                 <div className="flex flex-col">
                   <span>{item.name}</span>
+                  <span className="text-muted-foreground text-sm">
+                    {item.symbol}
+                  </span>
                 </div>
                 <Check
                   className={cn(

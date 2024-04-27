@@ -1,13 +1,22 @@
-import { SwapCard } from "./_components/swap-card";
+import { SwapCard } from "./_components/swap-card/swap-card";
+import { SwapProvider } from "./_components/swap-card/swap.provider";
 
 export default function Home() {
   return (
-    <div className="flex flex-col gap-8 items-center p-8">
-      <div className="text-4xl flex font-bold font-jetbrains-mono">
-        CROSS-CHAIN Swap
+    <div className="grid grid-cols-1 justify-between gap-8 items-center py-10">
+      <div className="grid gap-2">
+        <p className="lg:text-5xl text-4xl text-bold text-center font-jetbrains-mono">
+          CROSS-CHAIN SWAP
+        </p>
+        <p className="grid lg:text-2xl text-xl text-center text-muted-foreground">
+          The fastest cross-chain interoperability protocol
+        </p>
       </div>
-      <div className="flex">
-        <SwapCard />
+
+      <div className="grid justify-items-center">
+        <SwapProvider>
+          <SwapCard />
+        </SwapProvider>
       </div>
     </div>
   );

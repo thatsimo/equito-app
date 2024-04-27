@@ -1,5 +1,5 @@
 export const ChainBackground = () => (
-  <div className="-z-1 flex flex-col justify-center items-center absolute top-0 bottom-0 left-0 right-0 overflow-hidden">
+  <div className="z-[-10] flex flex-col justify-center items-center absolute top-0 bottom-0 left-0 right-0 overflow-hidden">
     <div className="relative top-0 -rotate-[16deg] lg:w-[110%] w-[220%] md:w-[180%]">
       <svg
         xmlns="http://www.w3.org/2000/svg"
