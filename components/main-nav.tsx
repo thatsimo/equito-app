@@ -6,7 +6,7 @@ import { icons } from "./icons";
 
 export function MainNav() {
   return (
-    <div className="mr-4 hidden md:flex">
+    <div className="mr-4 flex">
       <Link
         href="https://www.equito.network"
         className="mr-6 flex items-center space-x-2"
