@@ -1,9 +1,8 @@
 "use client";
 
-import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Chain, Coin, chains, coins } from "@/lib/model";
+import { chains, coins } from "@/lib/model";
 import CoinSelect from "./coin-select";
 import ChainSelect from "./chain-select";
 import { useSwap } from "./swap.provider";
@@ -17,8 +16,7 @@ export function SwapLineCard({ mode }: SwapLineCardProps) {
   if (!side) {
     throw new Error("SwapLineCard must be used within a SwapProvider");
   }
-
-  const { chain, setChain, coin, setCoin } = side;
+  const { chain, setChain, coin, setCoin, amount, setAmount } = side;
 
   const title = mode === "from" ? "You send" : "You receive";
 
@@ -45,6 +43,8 @@ export function SwapLineCard({ mode }: SwapLineCardProps) {
                 className="text-4xl font-jetbrains-mono"
                 variant={"ghost"}
                 disabled={!coin}
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
               />
               <CoinSelect
                 items={coins}

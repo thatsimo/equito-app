@@ -14,9 +14,7 @@ export default function Home() {
       </div>
 
       <div className="grid justify-items-center">
-        <SwapProvider>
-          <SwapCard />
-        </SwapProvider>
+        <SwapCard />
       </div>
     </div>
   );

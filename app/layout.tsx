@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { Shell } from "@/components/ui/shell";
 import { Header } from "@/components/header";
 import { ChainBackground } from "./_components/chain-svg";
+import { SwapProvider } from "./_components/swap-card/swap.provider";
 
 export const metadata: Metadata = {
   title: "Equito App",
@@ -43,14 +44,12 @@ export default function RootLayout({
           jedbrainsMono.variable
         )}
       >
-        <div className="relative flex min-h-screen flex-col">
+        <SwapProvider>
           <Header />
           <ChainBackground />
-          <main className="flex-1">
-            <Shell>{children}</Shell>
-          </main>
-        </div>
-        <Toaster />
+          <Shell>{children}</Shell>
+          <Toaster />
+        </SwapProvider>
       </body>
     </html>
   );
