@@ -1,5 +1,5 @@
 import { SwapCard } from "./_components/swap-card/swap-card";
-import { SwapProvider } from "./_components/swap-card/swap.provider";
+import { SwapProvider } from "../components/providers/swap.provider";
 
 export default function Home() {
   return (

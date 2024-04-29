@@ -1,4 +1,5 @@
 import "@/styles/globals.css";
+import "@rainbow-me/rainbowkit/styles.css";
 import type { Metadata } from "next";
 import { Barlow, JetBrains_Mono } from "next/font/google";
 import { cn } from "@/lib/utils";
@@ -6,7 +7,8 @@ import { Toaster } from "@/components/ui/sonner";
 import { Shell } from "@/components/ui/shell";
 import { Header } from "@/components/header";
 import { ChainBackground } from "./_components/chain-svg";
-import { SwapProvider } from "./_components/swap-card/swap.provider";
+import { SwapProvider } from "../components/providers/swap.provider";
+import { WalletProvider } from "@/components/providers/wallet.provider";
 
 export const metadata: Metadata = {
   title: "Equito App",
@@ -44,12 +46,14 @@ export default function RootLayout({
           jedbrainsMono.variable
         )}
       >
-        <SwapProvider>
-          <Header />
-          <ChainBackground />
-          <Shell>{children}</Shell>
-          <Toaster />
-        </SwapProvider>
+        <WalletProvider>
+          <SwapProvider>
+            <Header />
+            <ChainBackground />
+            <Shell>{children}</Shell>
+            <Toaster />
+          </SwapProvider>
+        </WalletProvider>
       </body>
     </html>
   );

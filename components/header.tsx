@@ -1,5 +1,5 @@
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { MainNav } from "./main-nav";
-import { Button } from "./ui/button";
 
 export function Header() {
   return (
@@ -7,7 +7,7 @@ export function Header() {
       <div className="container flex h-16 items-center justify-between space-x-4">
         <MainNav />
         <div className="ml-auto flex items-center space-x-4">
-          <Button>Connect Wallet</Button>
+          <ConnectButton />
         </div>
       </div>
     </header>

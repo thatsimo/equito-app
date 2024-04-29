@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { chains, coins } from "@/lib/model";
 import CoinSelect from "./coin-select";
 import ChainSelect from "./chain-select";
-import { useSwap } from "./swap.provider";
+import { useSwap } from "../../../components/providers/swap.provider";
 
 type SwapLineCardProps = {
   mode: "from" | "to";
@@ -14,7 +14,7 @@ type SwapLineCardProps = {
 export function SwapLineCard({ mode }: SwapLineCardProps) {
   const side = useSwap()[mode];
   if (!side) {
-    throw new Error("SwapLineCard must be used within a SwapProvider");
+    throw new Error("Swap mode not found");
   }
   const { chain, setChain, coin, setCoin, amount, setAmount } = side;
 
